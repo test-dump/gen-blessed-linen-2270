@@ -1,0 +1,45 @@
+The specification requires only a simple 'Hello, World!' message written to the console. The test will assert that when the Main function is called, it writes 'Hello, World!' to the console. As STDOUT (standard output where console messages are written) is not easy to directly read in C#, the test will need to redirect STDOUT to a StringWriter, from where the output can easily be read.
+
+program.cs
+```csharp
+using System;
+
+namespace HelloWorld
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+        }
+    }
+}
+```
+
+programtests.cs
+```csharp
+using System;
+using System.IO;
+using HelloWorld;
+using Xunit;
+
+namespace HelloWorldTests
+{
+    public class ProgramTests
+    {
+        [Fact]
+        public void Main_WritesHelloWorldToConsole()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            Program.Main(new string[] {});
+
+            var result = stringWriter.ToString().Trim();
+
+            Assert.Equal("Hello, World!", result);
+        }
+    }
+}
+```
+
+Note: Xunit is used for the tests. If not already installed, it can be done using `dotnet add package xunit` command. Xunit allows us to create a Fact marked test that asserts our program writes 'Hello, World!' to the console when run. The Console.SetOut() function is used to redirect the console output to our StringWriter, from where we can easily read the output using .ToString(). Assert.Equal() is used to check whether our output string matches 'Hello, World!'.
