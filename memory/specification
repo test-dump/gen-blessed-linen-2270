@@ -1,0 +1,18 @@
+**Program Description**
+This program will be a simple console application written in C# that outputs the message "Hello, World!" to the console. 
+
+**Core Classes, Functions and Methods**
+Since this is a simple console application, there will only be one class with a single method:
+
+1. Program: This is the main class that will house our entry point into the console application.
+
+Inside the Program class, we will have:
+
+1. Main(string[] args): This is the entry point function into the console application. It takes an array of strings as an argument, which can be passed in via command line if necessary. However, for our use case there won't be a need for passing in command line arguments.
+
+The purpose of the Program class's Main method will be to call the Console's WriteLine() method to output "Hello, World!" to the console. 
+
+**Dependencies**
+This program will not require any non-standard dependencies. It will only need the standard System namespace from .NET to access the Console class's WriteLine() method.
+
+Note: This program is developed and run with .NET Core. Please ensure .NET Core is installed in your development or runtime environment.
